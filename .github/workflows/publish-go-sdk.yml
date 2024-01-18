@@ -1,0 +1,31 @@
+name: Publish Go SDK
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+env:
+  REPOSITORY_OWNER: ${{ github.repository_owner }}
+  REPOSITORY_NAME: merchant-go-sdk
+  EMAIL: "chenyunda218@gmail.com"
+jobs:
+  generate-go-client:
+    runs-on: ubuntu-latest
+    name: Publish Go SDK
+    steps:
+      # Checkout your code
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Generate Go Client
+        uses: openapi-generators/openapitools-generator-action@v1
+        with:
+          openapi-file: openapi.yml
+          generator: go
+      - name: Push to merchant-go-sdk
+        run: |
+          git config --global user.email "${{env.EMAIL}}"
+          git config --global user.name "Dan Chen"
+          go env -w GOPRIVATE=github.com/universalmacro/*
+          cd go-client
+          sh git_push.sh ${{env.REPOSITORY_OWNER}} ${{env.REPOSITORY_NAME}} ${{ secrets.GIT_TOKEN }}
