@@ -23,12 +23,12 @@ jobs:
           go-version: "^1.21.1"
       - name: Push to core-go-sdk
         run: |
-          mkdir go-api-interfaces
-          cd go-api-interfaces
-          go mod init github.com/universalmacro/core-api-interfaces
+          mkdir ${{env.REPOSITORY_NAME}}
+          cd ${{env.REPOSITORY_NAME}}
+          go mod init github.com/universalmacro/${{env.REPOSITORY_NAME}}
           go get github.com/gin-gonic/gin
           go install github.com/universalmacro/openapi-go-generator@${{env.GEN_VERSION}}
-          go run github.com/universalmacro/openapi-go-generator@${{env.GEN_VERSION}} ../openapi.yml core-api-interfaces ./api.go
+          go run github.com/universalmacro/openapi-go-generator@${{env.GEN_VERSION}} ../openapi.yml ${{env.REPOSITORY_NAME}} ./api.go
           git config --global user.email "${{env.EMAIL}}"
           git config --global user.name "Dan Chen"
           go env -w GOPRIVATE=github.com/universalmacro/*
