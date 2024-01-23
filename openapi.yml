@@ -12,6 +12,24 @@ servers:
 tags:
   - name: Merchant
 paths:
+  /sessions:
+    post:
+      tags:
+        - Session
+      summary: 'Create session'
+      operationId: CreateSession
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateSessionRequest'
+      responses:
+        '200':
+          description: 'Success'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Session'
   /merchants:
     post:
       tags:
@@ -103,6 +121,8 @@ components:
       description: 'Login request'
       type: object
       properties:
+        shortMerchantId:
+          type: string
         account:
           type: string
         password:
