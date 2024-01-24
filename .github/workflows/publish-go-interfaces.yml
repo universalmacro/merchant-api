@@ -36,5 +36,6 @@ jobs:
           go env -w GOPRIVATE=github.com/universalmacro/*
           cp ../git_push.sh .
           sh git_push.sh ${{env.REPOSITORY_OWNER}} ${{env.REPOSITORY_NAME}} ${{ secrets.GIT_TOKEN }}
+          echo git rev-parse HEAD
           cd ..
-          sh go-interfaces-notification.sh ${{env.WECOM_WEBHOOK_URL}} ${{env.REPOSITORY_NAME}} `git rev-parse HEAD`
+          #sh go-interfaces-notification.sh ${{env.WECOM_WEBHOOK_URL}} ${{env.REPOSITORY_NAME}} `git rev-parse HEAD`
