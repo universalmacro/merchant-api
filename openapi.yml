@@ -44,7 +44,7 @@ paths:
             schema:
               $ref: '#/components/schemas/CreateMerchantRequest'
       responses:
-        '200':
+        '201':
           description: 'Success'
           content:
             application/json:
@@ -78,13 +78,19 @@ components:
       type: object
       required:
         - id
+        - shortMerchantId
         - nodeId
         - account
         - name
+        - description
         - createdAt
         - updatedAt
       properties:
         id:
+          type: string
+        shortMerchantId:
+          type: string
+        account:
           type: string
         nodeId:
           type: string
