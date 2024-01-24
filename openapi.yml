@@ -64,9 +64,12 @@ components:
     CreateMerchantRequest:
       type: object
       required:
+        - shortMerchantId
         - account
         - password
       properties:
+        shortMerchantId:
+          type: string
         account:
           type: string
         password:
