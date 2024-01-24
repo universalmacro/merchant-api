@@ -1,6 +1,6 @@
 url=$1
 packageName=$2
-version=$2
+version=$3
 
 generate_post_data()
 {
