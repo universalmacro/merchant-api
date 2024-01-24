@@ -5,7 +5,8 @@ on:
     branches:
       - main
   workflow_dispatch:
-
+env:
+  SDK_NAME: "merchant-api"
 jobs:
   generate-typescript-client:
     runs-on: ubuntu-latest
@@ -42,4 +43,4 @@ jobs:
           url: https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=f683698e-9790-42ef-a2be-25486a98e117
           # The HTTP method to use. Defaults to POST
           method: "POST"
-          body: '{ "msgtype": "text",  "text": {"content": "Hi, I am Robot 總書記\nAdded to the group by 陳允達 on 01/24"} }'
+          body: '{ "msgtype": "text",  "text": {"content": "${{env.SDK_NAME}} 發了新版本"} }'
