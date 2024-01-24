@@ -1,5 +1,6 @@
 url=$1
-message=$2
+packageName=$2
+version=$2
 
 generate_post_data()
 {
@@ -7,7 +8,7 @@ generate_post_data()
 {
   "msgtype": "text",
   "text": {
-    "content": "$message"
+    "content": "$packageName 新版本SDK發布完成 - $version"
   }
 }
 EOF
