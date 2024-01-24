@@ -34,3 +34,12 @@ jobs:
           npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Notification
+        uses: indiesdev/curl@v1.1
+        with:
+          # The target URL
+          # Required: true if custom-config is not set
+          url: https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=f683698e-9790-42ef-a2be-25486a98e117
+          # The HTTP method to use. Defaults to POST
+          method: "POST"
+          body: '{ "msgtype": "text",  "text": {"content": "Hi, I am Robot 總書記\nAdded to the group by 陳允達 on 01/24"} }'
