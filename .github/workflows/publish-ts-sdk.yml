@@ -36,6 +36,6 @@ jobs:
           npm publish
           lastVersion=`node -p "require('./package.json').version"`
           cd ..
-          sh wecom.sh ${{env.WECOM_WEBHOOK_URL}} "${{env.PACKAGE_NAME}}" $lastVersion
+          sh ts-sdk-notification.sh ${{env.WECOM_WEBHOOK_URL}} "${{env.PACKAGE_NAME}}" $lastVersion
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
