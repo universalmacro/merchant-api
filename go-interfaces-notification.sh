@@ -9,7 +9,7 @@ generate_post_data()
 {
   "msgtype": "text",
   "text": {
-    "content": "$packageName@$version interfaces released\nget go github.com/$org/packageName@$version"
+    "content": "$packageName@$version interfaces released\nget go github.com/$org/$packageName@$version"
   }
 }
 EOF
