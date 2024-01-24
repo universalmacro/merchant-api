@@ -34,7 +34,7 @@ jobs:
           npm version `npm view ${{ env.PACKAGE_NAME }} version` --no-git-tag-version
           npm version --preid=alpha prerelease --no-git-tag-version
           npm publish
-          lastVersion=$(npm view ${{ env.PACKAGE_NAME }} version)
+          lastVersion=`node -p "require('./package.json').version"`
           cd ..
           sh wecom.sh ${{env.WECOM_WEBHOOK_URL}} "${{env.PACKAGE_NAME}}" $lastVersion
         env:
