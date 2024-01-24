@@ -8,7 +8,7 @@ generate_post_data()
 {
   "msgtype": "text",
   "text": {
-    "content": "$packageName 新版本SDK發布完成 - $version"
+    "content": "$packageName@$version SDK released"
   }
 }
 EOF
