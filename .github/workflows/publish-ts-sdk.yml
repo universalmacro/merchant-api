@@ -6,7 +6,8 @@ on:
       - main
   workflow_dispatch:
 env:
-  SDK_NAME: "merchant-api"
+  PACKAGE_NAME: "@universalmacro/merchant-ts-sdk"
+  WECOM_WEBHOOK_URL: "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=f683698e-9790-42ef-a2be-25486a98e117"
 jobs:
   generate-typescript-client:
     runs-on: ubuntu-latest
@@ -30,17 +31,10 @@ jobs:
       - name: Publish
         run: |
           cd typescript-fetch-client
-          npm version `npm view @universalmacro/merchant-ts-sdk version` --no-git-tag-version
+          npm version `npm view ${{ env.PACKAGE_NAME }} version` --no-git-tag-version
           npm version --preid=alpha prerelease --no-git-tag-version
           npm publish
+          lastVersion=$(npm view ${{ env.PACKAGE_NAME }} version)
+          echo $lastVersion
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-      - name: Notification
-        uses: indiesdev/curl@v1.1
-        with:
-          # The target URL
-          # Required: true if custom-config is not set
-          url: https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=f683698e-9790-42ef-a2be-25486a98e117
-          # The HTTP method to use. Defaults to POST
-          method: "POST"
-          body: '{ "msgtype": "text",  "text": {"content": "${{env.SDK_NAME}} 發了新版本"} }'
