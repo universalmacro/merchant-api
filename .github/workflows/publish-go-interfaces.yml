@@ -9,6 +9,7 @@ env:
   REPOSITORY_OWNER: ${{ github.repository_owner }}
   REPOSITORY_NAME: merchant-api-interfaces
   EMAIL: "chenyunda218@gmail.com"
+  USERNAME: "Dan Chen"
   GEN_VERSION: "21106e0"
   WECOM_WEBHOOK_URL: "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=f683698e-9790-42ef-a2be-25486a98e117"
 
@@ -32,10 +33,7 @@ jobs:
           go install github.com/universalmacro/openapi-go-generator@${{env.GEN_VERSION}}
           go run github.com/universalmacro/openapi-go-generator@${{env.GEN_VERSION}} ../openapi.yml ${{env.REPOSITORY_NAME}} ./api.go
           git config --global user.email "${{env.EMAIL}}"
-          git config --global user.name "Dan Chen"
+          git config --global user.name "${{env.USERNAME}}"
           go env -w GOPRIVATE=github.com/universalmacro/*
-          cp ../git_push.sh .
-          sh git_push.sh ${{env.REPOSITORY_OWNER}} ${{env.REPOSITORY_NAME}} ${{ secrets.GIT_TOKEN }}
-          git rev-parse HEAD
           cp ../go-interfaces-notification.sh .
           sh go-interfaces-notification.sh ${{env.WECOM_WEBHOOK_URL}} ${{env.REPOSITORY_NAME}} `git rev-parse HEAD | cut -c 1-7`
