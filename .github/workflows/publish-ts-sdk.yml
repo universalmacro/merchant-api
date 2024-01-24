@@ -35,6 +35,7 @@ jobs:
           npm version --preid=alpha prerelease --no-git-tag-version
           npm publish
           lastVersion=$(npm view ${{ env.PACKAGE_NAME }} version)
+          cd ..
           sh wecom.sh ${{env.WECOM_WEBHOOK_URL}} "${{env.PACKAGE_NAME}}新版本SDK發布完成"
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
