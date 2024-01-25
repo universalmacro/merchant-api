@@ -1,6 +1,9 @@
 name: Publish TS SDK
 
 on:
+  push:
+    branches:
+      - main
   workflow_dispatch:
 env:
   PACKAGE_NAME: "@universalmacro/merchant-ts-sdk"
