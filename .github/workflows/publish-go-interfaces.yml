@@ -26,14 +26,15 @@ jobs:
           go-version: "^1.21.6"
       - name: Push to core-go-sdk
         run: |
+          git config --global user.email "${{env.EMAIL}}"
+          git config --global user.name "${{env.USERNAME}}"
+          go env -w GOPRIVATE=github.com/universalmacro/*
           mkdir ${{env.REPOSITORY_NAME}}
           cd ${{env.REPOSITORY_NAME}}
           go mod init github.com/universalmacro/${{env.REPOSITORY_NAME}}
           go get github.com/gin-gonic/gin
           go install github.com/universalmacro/openapi-go-generator@${{env.GEN_VERSION}}
           go run github.com/universalmacro/openapi-go-generator@${{env.GEN_VERSION}} ../openapi.yml ${{env.REPOSITORY_NAME}} ./api.go
-          git config --global user.email "${{env.EMAIL}}"
-          git config --global user.name "${{env.USERNAME}}"
-          go env -w GOPRIVATE=github.com/universalmacro/*
+          echo git rev-parse HEAD
           cp ../go-interfaces-notification.sh .
           sh go-interfaces-notification.sh ${{env.WECOM_WEBHOOK_URL}} ${{env.REPOSITORY_NAME}} `git rev-parse HEAD | cut -c 1-7`
