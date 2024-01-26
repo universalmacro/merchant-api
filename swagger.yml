@@ -11,6 +11,7 @@ servers:
   - url: https://api.universalmacro.com/core
 tags:
   - name: Merchant
+  - name: Session
 paths:
   /sessions:
     post:
@@ -30,7 +31,56 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Session'
+  /merchants/self:
+    get:
+      tags:
+        - Merchant
+      summary: 'Get self merchant'
+      operationId: GetSelfMerchant
+      security:
+        - ApiKeyAuth: []
+      responses:
+        '200':
+          description: 'Success'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Merchant'
+  /merchants/self/password:
+    put:
+      tags:
+        - Merchant
+      summary: 'Update self password'
+      operationId: UpdateSelfPassword
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdatePasswordRequest'
+      responses:
+        '204':
+          description: 'Success'
   /merchants:
+    get:
+      tags:
+        - Merchant
+      summary: 'List merchants'
+      operationId: ListMerchants
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - $ref: '#/components/parameters/IndexParam'
+        - $ref: '#/components/parameters/LimitParam'
+        - $ref: '#/components/parameters/Ordering'
+      responses:
+        '200':
+          description: 'Success'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MerchantList'
     post:
       tags:
         - Merchant
@@ -50,6 +100,70 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Merchant'
+  /merchants/{id}:
+    get:
+      tags:
+        - Merchant
+      summary: 'Get merchant'
+      operationId: GetMerchant
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - $ref: '#/components/parameters/ID'
+      responses:
+        '200':
+          description: 'Success'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Merchant'
+    put:
+      tags:
+        - Merchant
+      summary: 'Update merchant'
+      operationId: UpdateMerchant
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - $ref: '#/components/parameters/ID'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Merchant'
+      responses:
+        '204':
+          description: 'Success'
+    delete:
+      tags:
+        - Merchant
+      summary: 'Delete merchant'
+      operationId: DeleteMerchant
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - $ref: '#/components/parameters/ID'
+      responses:
+        '204':
+          description: 'Success'
+  /merchants/{id}/password:
+    put:
+      tags:
+        - Merchant
+      summary: 'Update merchant password'
+      operationId: UpdateMerchantPassword
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - $ref: '#/components/parameters/ID'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdatePasswordRequest'
+      responses:
+        '204':
+          description: 'Success'
 components:
   securitySchemes:
     ApiKeyAuth:
