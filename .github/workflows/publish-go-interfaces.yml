@@ -34,7 +34,7 @@ jobs:
           go mod init github.com/universalmacro/${{env.REPOSITORY_NAME}}
           go get github.com/gin-gonic/gin
           go install github.com/universalmacro/openapi-go-generator@${{env.GEN_VERSION}}
-          go run github.com/universalmacro/openapi-go-generator@${{env.GEN_VERSION}} ../openapi.yml ${{env.REPOSITORY_NAME}} ./api.go
+          go run github.com/universalmacro/openapi-go-generator@${{env.GEN_VERSION}} ../swagger.yml ${{env.REPOSITORY_NAME}} ./api.go
           cp ../go-client/git_push.sh .
           sh git_push.sh ${{env.REPOSITORY_OWNER}} ${{env.REPOSITORY_NAME}} ${{secrets.GIT_TOKEN}}
           cp ../go-interfaces-notification.sh .

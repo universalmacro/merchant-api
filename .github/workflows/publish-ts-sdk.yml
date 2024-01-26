@@ -19,9 +19,9 @@ jobs:
       - name: Generate Typescript Client
         uses: openapi-generators/openapitools-generator-action@v1
         with:
-          openapi-file: openapi.yml
+          openapi-file: swagger.yml
           generator: typescript-fetch
-          config-file: openapi-ts-config.yml
+          config-file: swagger-ts-config.yml
       - name: Setup node
         uses: actions/setup-node@v3
         with:
