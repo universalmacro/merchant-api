@@ -193,6 +193,8 @@ paths:
       operationId: CreateMember
       security:
         - BearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/ID'
       requestBody:
         content:
           application/json:
