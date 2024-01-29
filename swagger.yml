@@ -12,6 +12,8 @@ servers:
 tags:
   - name: Merchant
   - name: Session
+  - name: Member
+  - name: Verification
 paths:
   /sessions:
     post:
@@ -38,7 +40,7 @@ paths:
       summary: 'Get self merchant'
       operationId: GetSelfMerchant
       security:
-        - ApiKeyAuth: []
+        - BearerAuth: []
       responses:
         '200':
           description: 'Success'
@@ -53,7 +55,7 @@ paths:
       summary: 'Update self password'
       operationId: UpdateSelfPassword
       security:
-        - ApiKeyAuth: []
+        - BearerAuth: []
       requestBody:
         content:
           application/json:
@@ -150,7 +152,7 @@ paths:
     put:
       tags:
         - Merchant
-      summary: 'Update merchant password'
+      summary: 'Update merchant password by core admin'
       operationId: UpdateMerchantPassword
       security:
         - ApiKeyAuth: []
@@ -161,6 +163,59 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/UpdatePasswordRequest'
+      responses:
+        '204':
+          description: 'Success'
+  /merchants/{id}/members:
+    get:
+      tags:
+        - Member
+      summary: 'List members'
+      operationId: ListMembers
+      security:
+        - BearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/ID'
+        - $ref: '#/components/parameters/IndexParam'
+        - $ref: '#/components/parameters/LimitParam'
+        - $ref: '#/components/parameters/Ordering'
+      responses:
+        '200':
+          description: 'Success'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MemberList'
+    post:
+      tags:
+        - Member
+      summary: 'Create member'
+      operationId: CreateMember
+      security:
+        - BearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Member'
+      responses:
+        '201':
+          description: 'Success'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Member'
+  /verification:
+    post:
+      tags:
+        - Verification
+      summary: 'Send verification code'
+      operationId: SendVerificationCode
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateVerificationCodeRequest'
       responses:
         '204':
           description: 'Success'
@@ -175,6 +230,60 @@ components:
       scheme: bearer
       bearerFormat: JWT
   schemas:
+    CreateVerificationCodeRequest:
+      type: object
+      properties:
+        merchantId:
+          type: string
+        phoneNumber:
+          $ref: '#/components/schemas/PhoneNumber'
+    CreateMemberRequest:
+      type: object
+      properties:
+        merchantId:
+          type: string
+        name:
+          type: string
+        phoneNumber:
+          $ref: '#/components/schemas/PhoneNumber'
+    Member:
+      type: object
+      required:
+        - id
+        - merchantId
+        - name
+        - phoneNumber
+        - createdAt
+        - updatedAt
+      properties:
+        id:
+          type: string
+        merchantId:
+          type: string
+        name:
+          type: string
+        gender:
+          type: string
+        phoneNumber:
+          $ref: '#/components/schemas/PhoneNumber'
+        createdAt:
+          type: integer
+          format: int64
+        updatedAt:
+          type: integer
+          format: int64
+    MemberList:
+      type: object
+      required:
+        - items
+        - pagination
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Member'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
     CreateMerchantRequest:
       type: object
       required:
@@ -193,7 +302,6 @@ components:
       required:
         - id
         - shortMerchantId
-        - nodeId
         - account
         - name
         - description
@@ -205,8 +313,6 @@ components:
         shortMerchantId:
           type: string
         account:
-          type: string
-        nodeId:
           type: string
         name:
           type: string
