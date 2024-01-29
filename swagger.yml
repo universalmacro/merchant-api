@@ -239,15 +239,6 @@ components:
           type: string
         phoneNumber:
           $ref: '#/components/schemas/PhoneNumber'
-    CreateMemberRequest:
-      type: object
-      properties:
-        merchantId:
-          type: string
-        name:
-          type: string
-        phoneNumber:
-          $ref: '#/components/schemas/PhoneNumber'
     Member:
       type: object
       required:
