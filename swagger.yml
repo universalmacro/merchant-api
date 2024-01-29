@@ -219,8 +219,8 @@ paths:
             schema:
               $ref: '#/components/schemas/CreateVerificationCodeRequest'
       responses:
-        '204':
-          description: 'Success'
+        '201':
+          description: 'Created'
 components:
   securitySchemes:
     ApiKeyAuth:
@@ -239,6 +239,18 @@ components:
           type: string
         phoneNumber:
           $ref: '#/components/schemas/PhoneNumber'
+    CreateMemberRequest:
+      type: object
+      required:
+        - phoneNumber
+      properties:
+        name:
+          type: string
+        phoneNumber:
+          $ref: '#/components/schemas/PhoneNumber'
+        verificationCode:
+          type: string
+          example: '123456'
     Member:
       type: object
       required:
@@ -254,8 +266,6 @@ components:
         merchantId:
           type: string
         name:
-          type: string
-        gender:
           type: string
         phoneNumber:
           $ref: '#/components/schemas/PhoneNumber'
