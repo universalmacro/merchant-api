@@ -63,6 +63,50 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/MemberList'
+  /merchants/self/contact-form:
+    get:
+      tags:
+        - Merchant
+      summary: 'Get self merchant'
+      operationId: ListSelfContactForm
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: 'Success'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContactFormList'
+  /merchants/self/contact-form/{id}:
+    get:
+      tags:
+        - Merchant
+      summary: 'Get self merchant'
+      operationId: GetSelfContactForm
+      security:
+        - BearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/ID'
+      responses:
+        '200':
+          description: 'Success'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContactForm'
+    delete:
+      tags:
+        - Merchant
+      summary: 'Delete self merchant'
+      operationId: DeleteSelfContactForm
+      security:
+        - BearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/ID'
+      responses:
+        '204':
+          description: 'Success'
   /merchants:
     get:
       tags:
@@ -206,6 +250,24 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Member'
+  /merchants/{id}/contact-form:
+    post:
+      tags:
+        - Merchant
+      summary: 'Send contact form'
+      operationId: SendContactForm
+      security:
+        - BearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/ID'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ContactForm'
+      responses:
+        '201':
+          description: 'Success'
   /verification:
     post:
       tags:
@@ -414,6 +476,31 @@ components:
           type: integer
           format: int64
           description: 'Total page'
+    ContactForm:
+      type: object
+      properties:
+        name:
+          type: string
+        phone:
+          $ref: '#/components/schemas/PhoneNumber'
+        email:
+          type: string
+        subject:
+          type: string
+        message:
+          type: string
+    ContactFormList:
+      type: object
+      required:
+        - items
+        - pagination
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ContactForm'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
   parameters:
     Ordering:
       name: ordering
