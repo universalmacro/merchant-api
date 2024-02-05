@@ -366,6 +366,40 @@ paths:
       responses:
         '204':
           description: 'Success'
+  /spaces/{id}/tables:
+    get:
+      tags:
+        - Space
+      summary: 'List tables'
+      operationId: ListTables
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: 'Success'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Table'
+    post:
+      tags:
+        - Space
+      summary: 'Create table'
+      operationId: CreateTable
+      security:
+        - BearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/ID'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SaveTableRequest'
+      responses:
+        '201':
+          description: 'Created'
 components:
   securitySchemes:
     ApiKeyAuth:
@@ -618,6 +652,86 @@ components:
             $ref: '#/components/schemas/ContactForm'
         pagination:
           $ref: '#/components/schemas/Pagination'
+    # Order
+    SaveFoodRequest:
+      type: object
+      required:
+        - name
+        - description
+        - price
+        - properties
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        price:
+          type: integer
+          format: int64
+        properties:
+          type: array
+          items:
+            $ref: '#/components/schemas/FoodAttribute'
+    Food:
+      type: object
+      required:
+        - id
+        - name
+        - description
+        - price
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        price:
+          type: integer
+          format: int64
+        attributes:
+          type: array
+          items:
+            $ref: '#/components/schemas/FoodAttribute'
+    FoodAttribute:
+      type: object
+      required:
+        - label
+        - description
+      properties:
+        label:
+          type: string
+        options:
+          type: array
+          items:
+            $ref: '#/components/schemas/FoodAttributesOption'
+    FoodAttributesOption:
+      type: object
+      required:
+        - label
+      properties:
+        label:
+          type: string
+        extra:
+          type: integer
+          format: int64
+    SaveTableRequest:
+      type: object
+      required:
+        - label
+      properties:
+        label:
+          type: string
+    Table:
+      type: object
+      required:
+        - id
+        - label
+      properties:
+        id:
+          type: string
+        label:
+          type: string
   parameters:
     Ordering:
       name: ordering
