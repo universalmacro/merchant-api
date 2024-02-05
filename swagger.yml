@@ -7,13 +7,14 @@ info:
     email: chenyunda218@gmail.com
   version: 0.0.3
 servers:
-  - url: https://uat.api.universalmacro.com/core
-  - url: https://api.universalmacro.com/core
+  - url: https://uat.uat-hongkong-1-merchant.universalmacro.com
 tags:
   - name: Merchant
   - name: Session
   - name: Member
   - name: Verification
+  - name: Order
+  - name: Space
 paths:
   /sessions:
     post:
@@ -282,6 +283,89 @@ paths:
       responses:
         '201':
           description: 'Created'
+  /spaces:
+    get:
+      tags:
+        - Space
+      summary: 'List spaces'
+      operationId: ListSpaces
+      security:
+        - BearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/IndexParam'
+        - $ref: '#/components/parameters/LimitParam'
+      responses:
+        '200':
+          description: 'Success'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SpaceList'  
+    post:
+      tags:
+        - Space
+      summary: 'Create space'
+      operationId: CreateSpace
+      security:
+        - BearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateSpaceRequest'
+      responses:
+        '201':
+          description: 'Created'
+  /spaces/{id}:
+    get:
+      tags:
+        - Space
+      summary: 'Get space'
+      operationId: GetSpace
+      security:
+        - BearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/ID'
+      responses:
+        '200':
+          description: 'Success'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Space'
+    put:
+      tags:
+        - Space
+      summary: 'Update space'
+      operationId: UpdateSpace
+      security:
+        - BearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/ID'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateSpaceRequest'
+      responses:
+        '200':
+          description: 'Success'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Space'
+    delete:
+      tags:
+        - Space
+      summary: 'Delete space'
+      operationId: DeleteSpace
+      security:
+        - BearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/ID'
+      responses:
+        '204':
+          description: 'Success'
 components:
   securitySchemes:
     ApiKeyAuth:
@@ -293,6 +377,51 @@ components:
       scheme: bearer
       bearerFormat: JWT
   schemas:
+    UpdateSpaceRequest:
+      type: object
+      required:
+        - name
+        - description
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+    CreateSpaceRequest:
+      type: object
+      required:
+        - name
+        - description
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+    Space:
+      type: object
+      required:
+        - id
+        - name
+        - description
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+    SpaceList:
+      type: object
+      required:
+        - items
+        - pagination
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Space'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
     CreateVerificationCodeRequest:
       type: object
       properties:
