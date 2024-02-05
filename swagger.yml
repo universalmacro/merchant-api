@@ -300,18 +300,6 @@ components:
           type: string
         phoneNumber:
           $ref: '#/components/schemas/PhoneNumber'
-    CreateMemberRequest:
-      type: object
-      required:
-        - phoneNumber
-      properties:
-        name:
-          type: string
-        phoneNumber:
-          $ref: '#/components/schemas/PhoneNumber'
-        verificationCode:
-          type: string
-          example: '123456'
     Member:
       type: object
       required:
