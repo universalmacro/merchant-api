@@ -366,6 +366,88 @@ paths:
       responses:
         '204':
           description: 'Success'
+  /spaces/{id}/foods:
+    get:
+      tags:
+        - Order
+      summary: 'List foods'
+      operationId: ListFoods
+      parameters:
+        - $ref: '#/components/parameters/ID'
+        - $ref: '#/components/parameters/IndexParam'
+        - $ref: '#/components/parameters/LimitParam'
+      responses:
+        '200':
+          description: 'Success'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Food'
+    post:
+      tags:
+        - Order
+      summary: 'Create food'
+      operationId: CreateFood
+      parameters:
+        - $ref: '#/components/parameters/ID'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SaveFoodRequest'
+      responses:
+        '201':
+          description: 'Created'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Food'
+  /spaces/foods/{id}:
+    get:
+      tags:
+        - Order
+      summary: 'Get food'
+      operationId: GetFoodById
+      parameters:
+        - $ref: '#/components/parameters/ID'
+      responses:
+        '200':
+          description: 'Success'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Food'
+    put:
+      tags:
+        - Order
+      summary: 'Update food'
+      operationId: UpdateFood
+      parameters:
+        - $ref: '#/components/parameters/ID'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SaveFoodRequest'
+      responses:
+        '200':
+          description: 'Success'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Food'
+    delete:
+      tags:
+        - Order
+      summary: 'Delete food'
+      operationId: DeleteFood
+      parameters:
+        - $ref: '#/components/parameters/ID'
+      responses:
+        '204':
+          description: 'Success'
   /spaces/{id}/tables:
     get:
       tags:
@@ -415,6 +497,15 @@ components:
       scheme: bearer
       bearerFormat: JWT
   schemas:
+    Menu:
+      type: object
+      required:
+        - foods
+      properties:
+        foods:
+          type: array
+          items:
+            $ref: '#/components/schemas/Food'
     SaveSpaceRequest:
       type: object
       required:
@@ -704,18 +795,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/FoodAttributesOption'
-    Period:
-      type: object
-      required:
-        - startAt
-        - endAt
-      properties:
-        startAt:
-          type: integer
-          format: int64
-        endAt:
-          type: integer
-          format: int64
     FoodAttributesOption:
       type: object
       required:
