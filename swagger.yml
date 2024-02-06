@@ -885,10 +885,15 @@ components:
           format: int64
         image:
           type: string
+        status:
+          $ref: '#/components/schemas/FoodStatus'
         attributes:
           type: array
           items:
             $ref: '#/components/schemas/FoodAttribute'
+    FoodStatus:
+      type: string
+      enum: [AVAILABLE, UNAVAILABLE]
     FoodAttribute:
       type: object
       required:
@@ -928,6 +933,8 @@ components:
         tableLabel:
           type: string
         code:
+          type: string
+        remark:
           type: string
         foods:
           type: array
