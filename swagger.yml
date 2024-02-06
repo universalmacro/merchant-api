@@ -448,10 +448,34 @@ paths:
       responses:
         '204':
           description: 'Success'
+  /spaces/foods/{id}/image:
+    put:
+      tags:
+        - Order
+      summary: 'Update food image'
+      operationId: UpdateFoodImage
+      parameters:
+        - $ref: '#/components/parameters/ID'
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+      responses:
+        '200':
+          description: 'Success'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Food'
   /spaces/{id}/tables:
     get:
       tags:
-        - Space
+        - Order
       summary: 'List tables'
       operationId: ListTables
       parameters:
@@ -469,7 +493,7 @@ paths:
                   $ref: '#/components/schemas/Table'
     post:
       tags:
-        - Space
+        - Order
       summary: 'Create table'
       operationId: CreateTable
       security:
@@ -488,6 +512,84 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Table'
+  /spaces/tables/{id}:
+    put:
+      tags:
+        - Order
+      summary: 'Update table'
+      operationId: UpdateTable
+      security:
+        - BearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/ID'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SaveTableRequest'
+      responses:
+        '200':
+          description: 'Success'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Table'
+    delete:
+      tags:
+        - Order
+      summary: 'Delete table'
+      operationId: DeleteTable
+      security:
+        - BearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/ID'
+      responses:
+        '204':
+          description: 'Success'
+  /spaces/{id}/order:
+    post:
+      tags:
+        - Order
+      summary: 'Create order'
+      operationId: CreateOrder
+      security:
+        - BearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/ID'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateOrderRequest'
+      responses:
+        '201':
+          description: 'Created'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+  /spaces/{id}/order/cancel:
+    patch:
+      tags:
+        - Order
+      summary: 'Cancel order'
+      operationId: CancelOrder
+      security:
+        - BearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/ID'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CancelOrderRequest'
+      responses:
+        '200':
+          description: 'Success'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
 components:
   securitySchemes:
     ApiKeyAuth:
@@ -781,6 +883,8 @@ components:
         fixedOffset:
           type: integer
           format: int64
+        image:
+          type: string
         attributes:
           type: array
           items:
@@ -807,28 +911,70 @@ components:
         extra:
           type: integer
           format: int64
-    Order:
+    CancelOrderRequest:
       type: object
       required:
-        - pickUpCode
         - foods
-        - createdAt
-        - updatedAt
+      properties:
+        foods:
+          type: array
+          items:
+            $ref: '#/components/schemas/FoodSpec'
+    CreateOrderRequest:
+      type: object
+      required:
+        - foods
       properties:
         tableLabel:
           type: string
-        pickUpCode:
+        code:
+          type: string
+        foods:
+          type: array
+          items:
+            $ref: '#/components/schemas/FoodSpec'
+    FoodSpec:
+      type: object
+      required:
+        - foodId
+      properties:
+        foodId:
+          type: string
+        options:
+          type: array
+          items:
+            $ref: '#/components/schemas/FoodAttributesOption'
+    Order:
+      type: object
+      required:
+        - id
+        - code
+        - foods
+        - createdAt
+        - updatedAt
+        - status
+      properties:
+        id:
+          type: string
+        code:
+          type: string
+        tableLabel:
           type: string
         foods:
           type: array
           items:
             $ref: '#/components/schemas/Food'
+        status:
+          $ref: '#/components/schemas/OrderStatus'
         createdAt:
           type: integer
           format: int64
         updatedAt:
           type: integer
           format: int64
+    OrderStatus:
+      type: string
+      enum: [SUBMITTED, CANCELLED, COMPLETED]
     SaveTableRequest:
       type: object
       required:
