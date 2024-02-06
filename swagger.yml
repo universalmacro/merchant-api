@@ -844,6 +844,13 @@ components:
     # Order
     SaveFoodRequest:
       type: object
+      required:
+        - name
+        - price
+        - description
+        - status
+        - attributes
+        - fixedOffset
       properties:
         name:
           type: string
