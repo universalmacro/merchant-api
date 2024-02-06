@@ -454,6 +454,8 @@ paths:
         - Space
       summary: 'List tables'
       operationId: ListTables
+      parameters:
+        - $ref: '#/components/parameters/ID'
       security:
         - BearerAuth: []
       responses:
