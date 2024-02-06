@@ -400,6 +400,10 @@ paths:
       responses:
         '201':
           description: 'Created'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Table'
 components:
   securitySchemes:
     ApiKeyAuth:
@@ -649,7 +653,6 @@ components:
         - name
         - description
         - price
-        - properties
       properties:
         name:
           type: string
@@ -658,7 +661,10 @@ components:
         price:
           type: integer
           format: int64
-        properties:
+        fixedOffset:
+          type: integer
+          format: int64
+        attributes:
           type: array
           items:
             $ref: '#/components/schemas/FoodAttribute'
@@ -679,6 +685,9 @@ components:
         price:
           type: integer
           format: int64
+        fixedOffset:
+          type: integer
+          format: int64
         attributes:
           type: array
           items:
@@ -695,6 +704,18 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/FoodAttributesOption'
+    Period:
+      type: object
+      required:
+        - startAt
+        - endAt
+      properties:
+        startAt:
+          type: integer
+          format: int64
+        endAt:
+          type: integer
+          format: int64
     FoodAttributesOption:
       type: object
       required:
@@ -703,6 +724,28 @@ components:
         label:
           type: string
         extra:
+          type: integer
+          format: int64
+    Order:
+      type: object
+      required:
+        - pickUpCode
+        - foods
+        - createdAt
+        - updatedAt
+      properties:
+        tableLabel:
+          type: string
+        pickUpCode:
+          type: string
+        foods:
+          type: array
+          items:
+            $ref: '#/components/schemas/Food'
+        createdAt:
+          type: integer
+          format: int64
+        updatedAt:
           type: integer
           format: int64
     SaveTableRequest:
