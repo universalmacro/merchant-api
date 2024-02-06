@@ -900,7 +900,7 @@ components:
       type: object
       required:
         - label
-        - description
+        - options
       properties:
         label:
           type: string
