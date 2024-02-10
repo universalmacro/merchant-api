@@ -850,6 +850,7 @@ components:
         - price
         - description
         - status
+        - image
         - attributes
       properties:
         name:
@@ -862,6 +863,9 @@ components:
         fixedOffset:
           type: integer
           format: int64
+        image:
+          type: string
+          format: url
         attributes:
           type: array
           items:
