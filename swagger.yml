@@ -867,6 +867,7 @@ components:
           type: string
           format: url
         categories:
+          type: array
           items:
             type: string
         attributes:
