@@ -866,6 +866,9 @@ components:
         image:
           type: string
           format: url
+        categories:
+          items:
+            type: string
         attributes:
           type: array
           items:
@@ -894,6 +897,10 @@ components:
           type: string
         status:
           $ref: '#/components/schemas/FoodStatus'
+        categories:
+          type: array
+          items:
+            type: string
         attributes:
           type: array
           items:
