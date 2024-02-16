@@ -50,6 +50,36 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Merchant'
+  /merchants/self/config:
+    get:
+      tags:
+        - Merchant
+      summary: 'Get self merchant config'
+      operationId: GetSelfMerchantConfig
+      responses:
+        '200':
+          description: 'Success'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MerchantConfig'
+    put:
+      tags:
+        - Merchant
+      summary: 'Update self merchant config'
+      operationId: UpdateSelfMerchantConfig
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MerchantConfig'
+      responses:
+        '200':
+          description: 'Success'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MerchantConfig'
   /merchants/self/members:
     get:
       tags:
@@ -602,6 +632,14 @@ components:
       scheme: bearer
       bearerFormat: JWT
   schemas:
+    MerchantConfig:
+      type: object
+      properties:
+        currency:
+          $ref: '#/components/schemas/Currency'
+    Currency:
+      type: string
+      enum: [HKD, USD, CNY, MOP]
     Menu:
       type: object
       required:
