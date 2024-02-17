@@ -887,9 +887,9 @@ components:
         - name
         - price
         - description
-        - status
         - image
         - attributes
+        - categories
       properties:
         name:
           type: string
@@ -908,6 +908,8 @@ components:
           type: array
           items:
             type: string
+        status:
+          $ref: '#/components/schemas/FoodStatus'
         attributes:
           type: array
           items:
@@ -919,6 +921,11 @@ components:
         - name
         - description
         - price
+        - fixedOffset
+        - image
+        - status
+        - categories
+        - attributes
       properties:
         id:
           type: string
