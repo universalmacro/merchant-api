@@ -461,7 +461,11 @@ paths:
         - BearerAuth: []
       parameters:
         - $ref: "#/components/parameters/ID"
-        - $ref: "#/components/parameters/ID"
+        - in: path
+          name: printerId
+          schema:
+            type: string
+          required: true
       responses:
         "204":
           description: "Success"
