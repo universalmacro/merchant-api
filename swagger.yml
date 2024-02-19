@@ -353,8 +353,6 @@ paths:
         - Space
       summary: "Get space"
       operationId: GetSpace
-      security:
-        - BearerAuth: []
       parameters:
         - $ref: "#/components/parameters/ID"
       responses:
@@ -369,8 +367,6 @@ paths:
         - Space
       summary: "Update space"
       operationId: UpdateSpace
-      security:
-        - BearerAuth: []
       parameters:
         - $ref: "#/components/parameters/ID"
       requestBody:
@@ -393,6 +389,78 @@ paths:
       security:
         - BearerAuth: []
       parameters:
+        - $ref: "#/components/parameters/ID"
+      responses:
+        "204":
+          description: "Success"
+  /spaces/{id}/printers:
+    get:
+      tags:
+        - Space
+      summary: "List printers"
+      operationId: ListPrinters
+      parameters:
+        - $ref: "#/components/parameters/ID"
+      responses:
+        "200":
+          description: "Success"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Printer"
+    post:
+      tags:
+        - Space
+      summary: "Create printer"
+      operationId: CreatePrinter
+      parameters:
+        - $ref: "#/components/parameters/ID"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SavePrinter"
+      responses:
+        "201":
+          description: "Created"
+  /spaces/{id}/printers/{printerId}:
+    put:
+      tags:
+        - Space
+      summary: "Update printer"
+      operationId: UpdatePrinter
+      security:
+        - BearerAuth: []
+      parameters:
+        - $ref: "#/components/parameters/ID"
+        - in: path
+          name: printerId
+          schema:
+            type: string
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SavePrinter"
+      responses:
+        "200":
+          description: "Success"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Printer"
+    delete:
+      tags:
+        - Space
+      summary: "Delete printer"
+      operationId: DeletePrinter
+      security:
+        - BearerAuth: []
+      parameters:
+        - $ref: "#/components/parameters/ID"
         - $ref: "#/components/parameters/ID"
       responses:
         "204":
@@ -1010,6 +1078,36 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/FoodAttributesOption"
+    SavePrinter:
+      type: object
+      required:
+        - name
+        - type
+      properties:
+        name:
+          type: string
+        sn:
+          type: string
+        type:
+          $ref: "#/components/schemas/PrinterType"
+    Printer:
+      type: object
+      required:
+        - id
+        - name
+        - type
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        sn:
+          type: string
+        type:
+          $ref: "#/components/schemas/PrinterType"
+    PrinterType:
+      type: string
+      enum: [KITCHEN, CASHIER]
     Order:
       type: object
       required:
