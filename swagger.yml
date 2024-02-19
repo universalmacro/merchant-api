@@ -21,147 +21,147 @@ paths:
     post:
       tags:
         - Session
-      summary: 'Create session'
+      summary: "Create session"
       operationId: CreateSession
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CreateSessionRequest'
+              $ref: "#/components/schemas/CreateSessionRequest"
       responses:
-        '201':
-          description: 'Success'
+        "201":
+          description: "Success"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Session'
+                $ref: "#/components/schemas/Session"
   /merchants/self:
     get:
       tags:
         - Merchant
-      summary: 'Get self merchant'
+      summary: "Get self merchant"
       operationId: GetSelfMerchant
       security:
         - BearerAuth: []
       responses:
-        '200':
-          description: 'Success'
+        "200":
+          description: "Success"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Merchant'
+                $ref: "#/components/schemas/Merchant"
   /merchants/self/config:
     get:
       tags:
         - Merchant
-      summary: 'Get self merchant config'
+      summary: "Get self merchant config"
       operationId: GetSelfMerchantConfig
       responses:
-        '200':
-          description: 'Success'
+        "200":
+          description: "Success"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/MerchantConfig'
+                $ref: "#/components/schemas/MerchantConfig"
     put:
       tags:
         - Merchant
-      summary: 'Update self merchant config'
+      summary: "Update self merchant config"
       operationId: UpdateSelfMerchantConfig
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/MerchantConfig'
+              $ref: "#/components/schemas/MerchantConfig"
       responses:
-        '200':
-          description: 'Success'
+        "200":
+          description: "Success"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/MerchantConfig'
+                $ref: "#/components/schemas/MerchantConfig"
   /merchants/self/members:
     get:
       tags:
         - Merchant
-      summary: 'Get self merchant'
+      summary: "Get self merchant"
       operationId: ListSelfMembers
       security:
         - BearerAuth: []
       responses:
-        '200':
-          description: 'Success'
+        "200":
+          description: "Success"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/MemberList'
+                $ref: "#/components/schemas/MemberList"
   /merchants/self/contact-form:
     get:
       tags:
         - Merchant
-      summary: 'Get self merchant'
+      summary: "Get self merchant"
       operationId: ListSelfContactForm
       security:
         - BearerAuth: []
       responses:
-        '200':
-          description: 'Success'
+        "200":
+          description: "Success"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ContactFormList'
+                $ref: "#/components/schemas/ContactFormList"
   /merchants/self/contact-form/{id}:
     get:
       tags:
         - Merchant
-      summary: 'Get self merchant'
+      summary: "Get self merchant"
       operationId: GetSelfContactForm
       security:
         - BearerAuth: []
       parameters:
-        - $ref: '#/components/parameters/ID'
+        - $ref: "#/components/parameters/ID"
       responses:
-        '200':
-          description: 'Success'
+        "200":
+          description: "Success"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ContactForm'
+                $ref: "#/components/schemas/ContactForm"
     delete:
       tags:
         - Merchant
-      summary: 'Delete self merchant'
+      summary: "Delete self merchant"
       operationId: DeleteSelfContactForm
       security:
         - BearerAuth: []
       parameters:
-        - $ref: '#/components/parameters/ID'
+        - $ref: "#/components/parameters/ID"
       responses:
-        '204':
-          description: 'Success'
+        "204":
+          description: "Success"
   /merchants:
     get:
       tags:
         - Merchant
-      summary: 'List merchants'
+      summary: "List merchants"
       operationId: ListMerchants
       security:
         - ApiKeyAuth: []
       parameters:
-        - $ref: '#/components/parameters/IndexParam'
-        - $ref: '#/components/parameters/LimitParam'
-        - $ref: '#/components/parameters/Ordering'
+        - $ref: "#/components/parameters/IndexParam"
+        - $ref: "#/components/parameters/LimitParam"
+        - $ref: "#/components/parameters/Ordering"
       responses:
-        '200':
-          description: 'Success'
+        "200":
+          description: "Success"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/MerchantList'
+                $ref: "#/components/schemas/MerchantList"
     post:
       tags:
         - Merchant
-      summary: 'Create merchant'
+      summary: "Create merchant"
       operationId: CreateMerchant
       security:
         - ApiKeyAuth: []
@@ -169,173 +169,173 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CreateMerchantRequest'
+              $ref: "#/components/schemas/CreateMerchantRequest"
       responses:
-        '201':
-          description: 'Success'
+        "201":
+          description: "Success"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Merchant'
+                $ref: "#/components/schemas/Merchant"
   /merchants/{id}:
     get:
       tags:
         - Merchant
-      summary: 'Get merchant'
+      summary: "Get merchant"
       operationId: GetMerchant
       security:
         - ApiKeyAuth: []
       parameters:
-        - $ref: '#/components/parameters/ID'
+        - $ref: "#/components/parameters/ID"
       responses:
-        '200':
-          description: 'Success'
+        "200":
+          description: "Success"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Merchant'
+                $ref: "#/components/schemas/Merchant"
     put:
       tags:
         - Merchant
-      summary: 'Update merchant'
+      summary: "Update merchant"
       operationId: UpdateMerchant
       security:
         - ApiKeyAuth: []
       parameters:
-        - $ref: '#/components/parameters/ID'
+        - $ref: "#/components/parameters/ID"
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Merchant'
+              $ref: "#/components/schemas/Merchant"
       responses:
-        '204':
-          description: 'Success'
+        "204":
+          description: "Success"
     delete:
       tags:
         - Merchant
-      summary: 'Delete merchant'
+      summary: "Delete merchant"
       operationId: DeleteMerchant
       security:
         - ApiKeyAuth: []
       parameters:
-        - $ref: '#/components/parameters/ID'
+        - $ref: "#/components/parameters/ID"
       responses:
-        '204':
-          description: 'Success'
+        "204":
+          description: "Success"
   /merchants/{id}/password:
     put:
       tags:
         - Merchant
-      summary: 'Update merchant password by core admin'
+      summary: "Update merchant password by core admin"
       operationId: UpdateMerchantPassword
       security:
         - ApiKeyAuth: []
       parameters:
-        - $ref: '#/components/parameters/ID'
+        - $ref: "#/components/parameters/ID"
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UpdatePasswordRequest'
+              $ref: "#/components/schemas/UpdatePasswordRequest"
       responses:
-        '204':
-          description: 'Success'
+        "204":
+          description: "Success"
   /merchants/{id}/members:
     get:
       tags:
         - Member
-      summary: 'List members'
+      summary: "List members"
       operationId: ListMembers
       security:
         - BearerAuth: []
       parameters:
-        - $ref: '#/components/parameters/ID'
-        - $ref: '#/components/parameters/IndexParam'
-        - $ref: '#/components/parameters/LimitParam'
-        - $ref: '#/components/parameters/Ordering'
+        - $ref: "#/components/parameters/ID"
+        - $ref: "#/components/parameters/IndexParam"
+        - $ref: "#/components/parameters/LimitParam"
+        - $ref: "#/components/parameters/Ordering"
       responses:
-        '200':
-          description: 'Success'
+        "200":
+          description: "Success"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/MemberList'
+                $ref: "#/components/schemas/MemberList"
     post:
       tags:
         - Member
-      summary: 'Create member'
+      summary: "Create member"
       operationId: CreateMember
       security:
         - BearerAuth: []
       parameters:
-        - $ref: '#/components/parameters/ID'
+        - $ref: "#/components/parameters/ID"
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Member'
+              $ref: "#/components/schemas/Member"
       responses:
-        '201':
-          description: 'Success'
+        "201":
+          description: "Success"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Member'
+                $ref: "#/components/schemas/Member"
   /merchants/{id}/contact-form:
     post:
       tags:
         - Merchant
-      summary: 'Send contact form'
+      summary: "Send contact form"
       operationId: SendContactForm
       security:
         - BearerAuth: []
       parameters:
-        - $ref: '#/components/parameters/ID'
+        - $ref: "#/components/parameters/ID"
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ContactForm'
+              $ref: "#/components/schemas/ContactForm"
       responses:
-        '201':
-          description: 'Success'
+        "201":
+          description: "Success"
   /verification:
     post:
       tags:
         - Verification
-      summary: 'Send verification code'
+      summary: "Send verification code"
       operationId: SendVerificationCode
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CreateVerificationCodeRequest'
+              $ref: "#/components/schemas/CreateVerificationCodeRequest"
       responses:
-        '201':
-          description: 'Created'
+        "201":
+          description: "Created"
   /spaces:
     get:
       tags:
         - Space
-      summary: 'List spaces'
+      summary: "List spaces"
       operationId: ListSpaces
       security:
         - BearerAuth: []
       parameters:
-        - $ref: '#/components/parameters/IndexParam'
-        - $ref: '#/components/parameters/LimitParam'
+        - $ref: "#/components/parameters/IndexParam"
+        - $ref: "#/components/parameters/LimitParam"
       responses:
-        '200':
-          description: 'Success'
+        "200":
+          description: "Success"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SpaceList'  
+                $ref: "#/components/schemas/SpaceList"
     post:
       tags:
         - Space
-      summary: 'Create space'
+      summary: "Create space"
       operationId: CreateSpace
       security:
         - BearerAuth: []
@@ -343,150 +343,150 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/SaveSpaceRequest'
+              $ref: "#/components/schemas/SaveSpaceRequest"
       responses:
-        '201':
-          description: 'Created'
+        "201":
+          description: "Created"
   /spaces/{id}:
     get:
       tags:
         - Space
-      summary: 'Get space'
+      summary: "Get space"
       operationId: GetSpace
       security:
         - BearerAuth: []
       parameters:
-        - $ref: '#/components/parameters/ID'
+        - $ref: "#/components/parameters/ID"
       responses:
-        '200':
-          description: 'Success'
+        "200":
+          description: "Success"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Space'
+                $ref: "#/components/schemas/Space"
     put:
       tags:
         - Space
-      summary: 'Update space'
+      summary: "Update space"
       operationId: UpdateSpace
       security:
         - BearerAuth: []
       parameters:
-        - $ref: '#/components/parameters/ID'
+        - $ref: "#/components/parameters/ID"
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/SaveSpaceRequest'
+              $ref: "#/components/schemas/SaveSpaceRequest"
       responses:
-        '200':
-          description: 'Success'
+        "200":
+          description: "Success"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Space'
+                $ref: "#/components/schemas/Space"
     delete:
       tags:
         - Space
-      summary: 'Delete space'
+      summary: "Delete space"
       operationId: DeleteSpace
       security:
         - BearerAuth: []
       parameters:
-        - $ref: '#/components/parameters/ID'
+        - $ref: "#/components/parameters/ID"
       responses:
-        '204':
-          description: 'Success'
+        "204":
+          description: "Success"
   /spaces/{id}/foods:
     get:
       tags:
         - Order
-      summary: 'List foods'
+      summary: "List foods"
       operationId: ListFoods
       parameters:
-        - $ref: '#/components/parameters/ID'
-        - $ref: '#/components/parameters/IndexParam'
-        - $ref: '#/components/parameters/LimitParam'
+        - $ref: "#/components/parameters/ID"
+        - $ref: "#/components/parameters/IndexParam"
+        - $ref: "#/components/parameters/LimitParam"
       responses:
-        '200':
-          description: 'Success'
+        "200":
+          description: "Success"
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Food'
+                  $ref: "#/components/schemas/Food"
     post:
       tags:
         - Order
-      summary: 'Create food'
+      summary: "Create food"
       operationId: CreateFood
       parameters:
-        - $ref: '#/components/parameters/ID'
+        - $ref: "#/components/parameters/ID"
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/SaveFoodRequest'
+              $ref: "#/components/schemas/SaveFoodRequest"
       responses:
-        '201':
-          description: 'Created'
+        "201":
+          description: "Created"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Food'
+                $ref: "#/components/schemas/Food"
   /spaces/foods/{id}:
     get:
       tags:
         - Order
-      summary: 'Get food'
+      summary: "Get food"
       operationId: GetFoodById
       parameters:
-        - $ref: '#/components/parameters/ID'
+        - $ref: "#/components/parameters/ID"
       responses:
-        '200':
-          description: 'Success'
+        "200":
+          description: "Success"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Food'
+                $ref: "#/components/schemas/Food"
     put:
       tags:
         - Order
-      summary: 'Update food'
+      summary: "Update food"
       operationId: UpdateFood
       parameters:
-        - $ref: '#/components/parameters/ID'
+        - $ref: "#/components/parameters/ID"
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/SaveFoodRequest'
+              $ref: "#/components/schemas/SaveFoodRequest"
       responses:
-        '200':
-          description: 'Success'
+        "200":
+          description: "Success"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Food'
+                $ref: "#/components/schemas/Food"
     delete:
       tags:
         - Order
-      summary: 'Delete food'
+      summary: "Delete food"
       operationId: DeleteFood
       parameters:
-        - $ref: '#/components/parameters/ID'
+        - $ref: "#/components/parameters/ID"
       responses:
-        '204':
-          description: 'Success'
+        "204":
+          description: "Success"
   /spaces/foods/{id}/image:
     put:
       tags:
         - Order
-      summary: 'Update food image'
+      summary: "Update food image"
       operationId: UpdateFoodImage
       parameters:
-        - $ref: '#/components/parameters/ID'
+        - $ref: "#/components/parameters/ID"
       requestBody:
         content:
           multipart/form-data:
@@ -497,130 +497,130 @@ paths:
                   type: string
                   format: binary
       responses:
-        '200':
-          description: 'Success'
+        "200":
+          description: "Success"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Food'
+                $ref: "#/components/schemas/Food"
   /spaces/{id}/tables:
     get:
       tags:
         - Order
-      summary: 'List tables'
+      summary: "List tables"
       operationId: ListTables
       parameters:
-        - $ref: '#/components/parameters/ID'
+        - $ref: "#/components/parameters/ID"
       security:
         - BearerAuth: []
       responses:
-        '200':
-          description: 'Success'
+        "200":
+          description: "Success"
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Table'
+                  $ref: "#/components/schemas/Table"
     post:
       tags:
         - Order
-      summary: 'Create table'
+      summary: "Create table"
       operationId: CreateTable
       security:
         - BearerAuth: []
       parameters:
-        - $ref: '#/components/parameters/ID'
+        - $ref: "#/components/parameters/ID"
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/SaveTableRequest'
+              $ref: "#/components/schemas/SaveTableRequest"
       responses:
-        '201':
-          description: 'Created'
+        "201":
+          description: "Created"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Table'
+                $ref: "#/components/schemas/Table"
   /spaces/tables/{id}:
     put:
       tags:
         - Order
-      summary: 'Update table'
+      summary: "Update table"
       operationId: UpdateTable
       security:
         - BearerAuth: []
       parameters:
-        - $ref: '#/components/parameters/ID'
+        - $ref: "#/components/parameters/ID"
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/SaveTableRequest'
+              $ref: "#/components/schemas/SaveTableRequest"
       responses:
-        '200':
-          description: 'Success'
+        "200":
+          description: "Success"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Table'
+                $ref: "#/components/schemas/Table"
     delete:
       tags:
         - Order
-      summary: 'Delete table'
+      summary: "Delete table"
       operationId: DeleteTable
       security:
         - BearerAuth: []
       parameters:
-        - $ref: '#/components/parameters/ID'
+        - $ref: "#/components/parameters/ID"
       responses:
-        '204':
-          description: 'Success'
+        "204":
+          description: "Success"
   /spaces/{id}/order:
     post:
       tags:
         - Order
-      summary: 'Create order'
+      summary: "Create order"
       operationId: CreateOrder
       security:
         - BearerAuth: []
       parameters:
-        - $ref: '#/components/parameters/ID'
+        - $ref: "#/components/parameters/ID"
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CreateOrderRequest'
+              $ref: "#/components/schemas/CreateOrderRequest"
       responses:
-        '201':
-          description: 'Created'
+        "201":
+          description: "Created"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Order'
+                $ref: "#/components/schemas/Order"
   /spaces/{id}/order/cancel:
     patch:
       tags:
         - Order
-      summary: 'Cancel order'
+      summary: "Cancel order"
       operationId: CancelOrder
       security:
         - BearerAuth: []
       parameters:
-        - $ref: '#/components/parameters/ID'
+        - $ref: "#/components/parameters/ID"
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CancelOrderRequest'
+              $ref: "#/components/schemas/CancelOrderRequest"
       responses:
-        '200':
-          description: 'Success'
+        "200":
+          description: "Success"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Order'
+                $ref: "#/components/schemas/Order"
 components:
   securitySchemes:
     ApiKeyAuth:
@@ -636,7 +636,7 @@ components:
       type: object
       properties:
         currency:
-          $ref: '#/components/schemas/Currency'
+          $ref: "#/components/schemas/Currency"
     Currency:
       type: string
       enum: [HKD, USD, CNY, MOP]
@@ -648,7 +648,7 @@ components:
         foods:
           type: array
           items:
-            $ref: '#/components/schemas/Food'
+            $ref: "#/components/schemas/Food"
     SaveSpaceRequest:
       type: object
       required:
@@ -681,16 +681,16 @@ components:
         items:
           type: array
           items:
-            $ref: '#/components/schemas/Space'
+            $ref: "#/components/schemas/Space"
         pagination:
-          $ref: '#/components/schemas/Pagination'
+          $ref: "#/components/schemas/Pagination"
     CreateVerificationCodeRequest:
       type: object
       properties:
         merchantId:
           type: string
         phoneNumber:
-          $ref: '#/components/schemas/PhoneNumber'
+          $ref: "#/components/schemas/PhoneNumber"
     Member:
       type: object
       required:
@@ -708,7 +708,7 @@ components:
         name:
           type: string
         phoneNumber:
-          $ref: '#/components/schemas/PhoneNumber'
+          $ref: "#/components/schemas/PhoneNumber"
         createdAt:
           type: integer
           format: int64
@@ -724,9 +724,9 @@ components:
         items:
           type: array
           items:
-            $ref: '#/components/schemas/Member'
+            $ref: "#/components/schemas/Member"
         pagination:
-          $ref: '#/components/schemas/Pagination'
+          $ref: "#/components/schemas/Pagination"
     CreateMerchantRequest:
       type: object
       required:
@@ -776,9 +776,9 @@ components:
         items:
           type: array
           items:
-            $ref: '#/components/schemas/Merchant'
+            $ref: "#/components/schemas/Merchant"
         pagination:
-          $ref: '#/components/schemas/Pagination'
+          $ref: "#/components/schemas/Pagination"
     PhoneNumber:
       type: object
       required:
@@ -790,7 +790,7 @@ components:
         number:
           type: string
     CreateSessionRequest:
-      description: 'Login request'
+      description: "Login request"
       type: object
       properties:
         shortMerchantId:
@@ -800,7 +800,7 @@ components:
         password:
           type: string
     CreateAdminRequest:
-      description: 'Create admin request schema'
+      description: "Create admin request schema"
       required:
         - account
         - password
@@ -811,7 +811,7 @@ components:
         password:
           type: string
         role:
-          $ref: '#/components/schemas/Role'
+          $ref: "#/components/schemas/Role"
     Session:
       type: object
       required:
@@ -832,11 +832,11 @@ components:
         oldPassword:
           type: string
     Ordering:
-      description: 'Ordering'
+      description: "Ordering"
       type: string
       enum: [ASCENDING, DESCENDING]
     Pagination:
-      description: 'Pagination'
+      description: "Pagination"
       type: object
       required:
         - index
@@ -846,22 +846,22 @@ components:
         index:
           type: integer
           format: int64
-          description: 'Current page'
+          description: "Current page"
         limit:
           type: integer
           format: int64
-          description: 'Amount per page'
+          description: "Amount per page"
         total:
           type: integer
           format: int64
-          description: 'Total page'
+          description: "Total page"
     ContactForm:
       type: object
       properties:
         name:
           type: string
         phone:
-          $ref: '#/components/schemas/PhoneNumber'
+          $ref: "#/components/schemas/PhoneNumber"
         email:
           type: string
         subject:
@@ -877,9 +877,9 @@ components:
         items:
           type: array
           items:
-            $ref: '#/components/schemas/ContactForm'
+            $ref: "#/components/schemas/ContactForm"
         pagination:
-          $ref: '#/components/schemas/Pagination'
+          $ref: "#/components/schemas/Pagination"
     # Order
     SaveFoodRequest:
       type: object
@@ -909,11 +909,11 @@ components:
           items:
             type: string
         status:
-          $ref: '#/components/schemas/FoodStatus'
+          $ref: "#/components/schemas/FoodStatus"
         attributes:
           type: array
           items:
-            $ref: '#/components/schemas/FoodAttribute'
+            $ref: "#/components/schemas/FoodAttribute"
     Food:
       type: object
       required:
@@ -921,7 +921,6 @@ components:
         - name
         - description
         - price
-        - fixedOffset
         - image
         - status
         - categories
@@ -942,7 +941,7 @@ components:
         image:
           type: string
         status:
-          $ref: '#/components/schemas/FoodStatus'
+          $ref: "#/components/schemas/FoodStatus"
         categories:
           type: array
           items:
@@ -950,7 +949,7 @@ components:
         attributes:
           type: array
           items:
-            $ref: '#/components/schemas/FoodAttribute'
+            $ref: "#/components/schemas/FoodAttribute"
     FoodStatus:
       type: string
       enum: [AVAILABLE, UNAVAILABLE]
@@ -965,7 +964,7 @@ components:
         options:
           type: array
           items:
-            $ref: '#/components/schemas/FoodAttributesOption'
+            $ref: "#/components/schemas/FoodAttributesOption"
     FoodAttributesOption:
       type: object
       required:
@@ -984,7 +983,7 @@ components:
         foods:
           type: array
           items:
-            $ref: '#/components/schemas/FoodSpec'
+            $ref: "#/components/schemas/FoodSpec"
     CreateOrderRequest:
       type: object
       required:
@@ -999,7 +998,7 @@ components:
         foods:
           type: array
           items:
-            $ref: '#/components/schemas/FoodSpec'
+            $ref: "#/components/schemas/FoodSpec"
     FoodSpec:
       type: object
       required:
@@ -1010,7 +1009,7 @@ components:
         options:
           type: array
           items:
-            $ref: '#/components/schemas/FoodAttributesOption'
+            $ref: "#/components/schemas/FoodAttributesOption"
     Order:
       type: object
       required:
@@ -1030,9 +1029,9 @@ components:
         foods:
           type: array
           items:
-            $ref: '#/components/schemas/Food'
+            $ref: "#/components/schemas/Food"
         status:
-          $ref: '#/components/schemas/OrderStatus'
+          $ref: "#/components/schemas/OrderStatus"
         createdAt:
           type: integer
           format: int64
@@ -1062,14 +1061,14 @@ components:
   parameters:
     Ordering:
       name: ordering
-      description: 'ASCENDING or DESCENDING'
+      description: "ASCENDING or DESCENDING"
       in: query
       schema:
-        $ref: '#/components/schemas/Ordering'
+        $ref: "#/components/schemas/Ordering"
     IndexParam:
       name: index
       in: query
-      description: 'Current page index'
+      description: "Current page index"
       schema:
         type: integer
         minimum: 0
@@ -1077,7 +1076,7 @@ components:
     LimitParam:
       name: limit
       in: query
-      description: 'Total pages'
+      description: "Total pages"
       schema:
         type: integer
         minimum: 1
