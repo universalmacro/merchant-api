@@ -1142,7 +1142,9 @@ components:
       required:
         - id
         - name
+        - sn
         - type
+        - model
       properties:
         id:
           type: string
