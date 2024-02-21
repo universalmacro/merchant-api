@@ -507,6 +507,42 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Food"
+  /spaces/foods/categories:
+    get:
+      tags:
+        - Order
+      summary: "List food categories"
+      operationId: ListFoodCategories
+      responses:
+        "200":
+          description: "Success"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+    put:
+      tags:
+        - Order
+      summary: "Update food categories"
+      operationId: UpdateFoodCategories
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: string
+      responses:
+        "200":
+          description: "Success"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
   /spaces/foods/{id}:
     get:
       tags:
