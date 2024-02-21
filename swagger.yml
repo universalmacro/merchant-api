@@ -1125,6 +1125,7 @@ components:
     SavePrinter:
       type: object
       required:
+        - sn
         - name
         - type
       properties:
@@ -1134,6 +1135,8 @@ components:
           type: string
         type:
           $ref: "#/components/schemas/PrinterType"
+        model:
+          $ref: "#/components/schemas/PrinterModel"
     Printer:
       type: object
       required:
@@ -1149,9 +1152,14 @@ components:
           type: string
         type:
           $ref: "#/components/schemas/PrinterType"
+        model:
+          $ref: "#/components/schemas/PrinterModel"
     PrinterType:
       type: string
       enum: [KITCHEN, CASHIER]
+    PrinterModel:
+      type: string
+      enum: [80MM, 58MM]
     Order:
       type: object
       required:
