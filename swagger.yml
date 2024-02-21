@@ -449,8 +449,6 @@ paths:
         - Space
       summary: "Update printer"
       operationId: UpdatePrinter
-      security:
-        - BearerAuth: []
       parameters:
         - in: path
           name: printerId
@@ -474,8 +472,6 @@ paths:
         - Space
       summary: "Delete printer"
       operationId: DeletePrinter
-      security:
-        - BearerAuth: []
       parameters:
         - in: path
           name: printerId
@@ -1250,6 +1246,12 @@ components:
         minimum: 1
         default: 1
     ID:
+      in: path
+      name: id
+      schema:
+        type: string
+      required: true
+    SpaceID:
       in: path
       name: id
       schema:
