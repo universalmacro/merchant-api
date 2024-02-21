@@ -603,6 +603,46 @@ paths:
       responses:
         "204":
           description: "Success"
+  /spaces/foods/{id}/printers:
+    get:
+      tags:
+        - Order
+      summary: "List food printers"
+      operationId: ListFoodPrinters
+      parameters:
+        - $ref: "#/components/parameters/ID"
+      responses:
+        "200":
+          description: "Success"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Printer"
+    put:
+      tags:
+        - Order
+      summary: "Update food printers"
+      operationId: UpdateFoodPrinters
+      parameters:
+        - $ref: "#/components/parameters/ID"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: string
+      responses:
+        "200":
+          description: "Success"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Printer"
   /spaces/foods/{id}/image:
     put:
       tags:
