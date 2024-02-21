@@ -507,11 +507,13 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Food"
-  /spaces/foods/categories:
+  /spaces{id}/foods/categories:
     get:
       tags:
         - Order
       summary: "List food categories"
+      parameters:
+        - $ref: "#/components/parameters/ID"
       operationId: ListFoodCategories
       responses:
         "200":
@@ -527,6 +529,8 @@ paths:
         - Order
       summary: "Update food categories"
       operationId: UpdateFoodCategories
+      parameters:
+        - $ref: "#/components/parameters/ID"
       requestBody:
         content:
           application/json:
