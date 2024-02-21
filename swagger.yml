@@ -1159,7 +1159,7 @@ components:
       enum: [KITCHEN, CASHIER]
     PrinterModel:
       type: string
-      enum: [80MM, 58MM]
+      enum: [Printer80MM, Printer58MM]
     Order:
       type: object
       required:
