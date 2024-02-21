@@ -425,7 +425,25 @@ paths:
       responses:
         "201":
           description: "Created"
-  /spaces/{id}/printers/{printerId}:
+  /spaces/printers/{printerId}:
+    get:
+      tags:
+        - Space
+      summary: "Get printer"
+      operationId: GetPrinter
+      parameters:
+        - in: path
+          name: printerId
+          schema:
+            type: string
+          required: true
+      responses:
+        "200":
+          description: "Success"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Printer"
     put:
       tags:
         - Space
@@ -434,7 +452,6 @@ paths:
       security:
         - BearerAuth: []
       parameters:
-        - $ref: "#/components/parameters/ID"
         - in: path
           name: printerId
           schema:
@@ -460,7 +477,6 @@ paths:
       security:
         - BearerAuth: []
       parameters:
-        - $ref: "#/components/parameters/ID"
         - in: path
           name: printerId
           schema:
