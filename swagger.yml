@@ -507,7 +507,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Food"
-  /spaces{id}/foods/categories:
+  /spaces/{id}/foods/categories:
     get:
       tags:
         - Order
