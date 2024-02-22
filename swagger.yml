@@ -1188,6 +1188,7 @@ components:
         - sn
         - name
         - type
+        - model
       properties:
         name:
           type: string
