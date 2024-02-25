@@ -1172,11 +1172,11 @@ components:
     FoodSpec:
       type: object
       required:
-        - foodId
+        - food
       properties:
-        foodId:
+        food:
           type: string
-        options:
+        spec:
           type: array
           items:
             $ref: "#/components/schemas/FoodAttributesOption"
@@ -1249,7 +1249,7 @@ components:
         foods:
           type: array
           items:
-            $ref: "#/components/schemas/Food"
+            $ref: "#/components/schemas/FoodSpec"
         status:
           $ref: "#/components/schemas/OrderStatus"
         createdAt:
