@@ -631,9 +631,7 @@ paths:
         content:
           application/json:
             schema:
-              type: array
-              items:
-                type: string
+              $ref: '#/components/schemas/UpdateFoodPrintersRequest'
       responses:
         "200":
           description: "Success"
@@ -1182,6 +1180,15 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/FoodAttributesOption"
+    UpdateFoodPrintersRequest:
+      type: object
+      required:
+        - printerIds
+      properties:
+        printerIds:
+          type: array
+          items:
+            type: string
     SavePrinter:
       type: object
       required:
