@@ -347,14 +347,14 @@ paths:
       responses:
         "201":
           description: "Created"
-  /spaces/{id}:
+  /spaces/{spaceId}:
     get:
       tags:
         - Space
       summary: "Get space"
       operationId: GetSpace
       parameters:
-        - $ref: "#/components/parameters/ID"
+        - $ref: "#/components/parameters/SpaceID"
       responses:
         "200":
           description: "Success"
@@ -393,14 +393,14 @@ paths:
       responses:
         "204":
           description: "Success"
-  /spaces/{id}/printers:
+  /spaces/{spaceId}/printers:
     get:
       tags:
         - Space
       summary: "List printers"
       operationId: ListPrinters
       parameters:
-        - $ref: "#/components/parameters/ID"
+        - $ref: "#/components/parameters/SpaceID"
       responses:
         "200":
           description: "Success"
@@ -481,14 +481,14 @@ paths:
       responses:
         "204":
           description: "Success"
-  /spaces/{id}/foods:
+  /spaces/{spaceId}/foods:
     get:
       tags:
         - Order
       summary: "List foods"
       operationId: ListFoods
       parameters:
-        - $ref: "#/components/parameters/ID"
+        - $ref: "#/components/parameters/SpaceID"
         - $ref: "#/components/parameters/IndexParam"
         - $ref: "#/components/parameters/LimitParam"
       responses:
@@ -519,13 +519,13 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Food"
-  /spaces/{id}/foods/categories:
+  /spaces/{spaceId}/foods/categories:
     get:
       tags:
         - Order
       summary: "List food categories"
       parameters:
-        - $ref: "#/components/parameters/ID"
+        - $ref: "#/components/parameters/SpaceID"
       operationId: ListFoodCategories
       responses:
         "200":
@@ -665,14 +665,14 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Food"
-  /spaces/{id}/tables:
+  /spaces/{spaceId}/tables:
     get:
       tags:
         - Order
       summary: "List tables"
       operationId: ListTables
       parameters:
-        - $ref: "#/components/parameters/ID"
+        - $ref: "#/components/parameters/SpaceID"
       security:
         - BearerAuth: []
       responses:
@@ -739,16 +739,14 @@ paths:
       responses:
         "204":
           description: "Success"
-  /spaces/{id}/order:
+  /spaces/{spaceId}/order:
     post:
       tags:
         - Order
       summary: "Create order"
       operationId: CreateOrder
-      security:
-        - BearerAuth: []
       parameters:
-        - $ref: "#/components/parameters/ID"
+        - $ref: "#/components/parameters/SpaceID"
       requestBody:
         content:
           application/json:
@@ -761,7 +759,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Order"
-  /spaces/{id}/order/cancel:
+  /spaces/{spaceId}/order/cancel:
     patch:
       tags:
         - Order
@@ -770,7 +768,7 @@ paths:
       security:
         - BearerAuth: []
       parameters:
-        - $ref: "#/components/parameters/ID"
+        - $ref: "#/components/parameters/SpaceID"
       requestBody:
         content:
           application/json:
@@ -1309,7 +1307,7 @@ components:
       required: true
     SpaceID:
       in: path
-      name: id
+      name: spaceId
       schema:
         type: string
       required: true
