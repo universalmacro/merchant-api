@@ -1159,8 +1159,6 @@ components:
       properties:
         tableLabel:
           type: string
-        code:
-          type: string
         remark:
           type: string
         foods:
@@ -1177,7 +1175,17 @@ components:
         spec:
           type: array
           items:
-            $ref: "#/components/schemas/FoodAttributesOption"
+            $ref: "#/components/schemas/Spec"
+    Spec:
+      type: object
+      required:
+        - attribute
+        - optioned
+      properties:
+        attribute:
+          type: string
+        optioned:
+          type: string
     UpdateFoodPrintersRequest:
       type: object
       required:
