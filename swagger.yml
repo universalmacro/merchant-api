@@ -393,6 +393,37 @@ paths:
       responses:
         "204":
           description: "Success"
+  /spaces/{spaceId}/orders:
+    get:
+      tags:
+        - Order
+      summary: "List orders"
+      operationId: ListOrders
+      parameters:
+        - $ref: "#/components/parameters/SpaceID"
+        - $ref: "#/components/parameters/StartAt"
+        - $ref: "#/components/parameters/EndAt"
+        - in: query
+          name: statuses
+          schema:
+           type: array
+           items:
+             type: string
+        - in: query
+          name: tableLabels
+          schema:
+           type: array
+           items:
+             type: string
+      responses:
+        "200":
+          description: "Success"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Order"
   /spaces/{spaceId}/printers:
     get:
       tags:
