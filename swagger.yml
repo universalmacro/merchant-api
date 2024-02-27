@@ -673,8 +673,6 @@ paths:
       operationId: ListTables
       parameters:
         - $ref: "#/components/parameters/SpaceID"
-      security:
-        - BearerAuth: []
       responses:
         "200":
           description: "Success"
@@ -689,8 +687,6 @@ paths:
         - Order
       summary: "Create table"
       operationId: CreateTable
-      security:
-        - BearerAuth: []
       parameters:
         - $ref: "#/components/parameters/ID"
       requestBody:
@@ -711,8 +707,6 @@ paths:
         - Order
       summary: "Update table"
       operationId: UpdateTable
-      security:
-        - BearerAuth: []
       parameters:
         - $ref: "#/components/parameters/ID"
       requestBody:
@@ -1316,6 +1310,12 @@ components:
     SpaceID:
       in: path
       name: spaceId
+      schema:
+        type: string
+      required: true
+    FoodID:
+      in: path
+      name: foodID
       schema:
         type: string
       required: true
