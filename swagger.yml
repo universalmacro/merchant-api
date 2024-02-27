@@ -1165,7 +1165,7 @@ components:
         - food
       properties:
         food:
-          type: string
+          $ref: "#/components/schemas/Food"
         spec:
           type: array
           items:
