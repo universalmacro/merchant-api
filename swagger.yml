@@ -876,6 +876,8 @@ components:
           type: string
         description:
           type: string
+        parentId:
+          type: string
     Space:
       type: object
       required:
