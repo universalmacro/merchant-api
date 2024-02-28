@@ -393,6 +393,38 @@ paths:
       responses:
         "204":
           description: "Success"
+  /spaces/{spaceId}/parent:
+    get:
+      tags:
+        - Space
+      summary: "Get space parent"
+      operationId: GetSpaceParent
+      parameters:
+        - $ref: "#/components/parameters/SpaceID"
+      responses:
+        "200":
+          description: "Success"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Space"
+  /spaces/{spaceId}/children:
+    get:
+      tags:
+        - Space
+      summary: "List space children"
+      operationId: ListSpaceChildren
+      parameters:
+        - $ref: "#/components/parameters/SpaceID"
+      responses:
+        "200":
+          description: "Success"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Space"
   /spaces/{spaceId}/orders:
     get:
       tags:
@@ -406,15 +438,15 @@ paths:
         - in: query
           name: statuses
           schema:
-           type: array
-           items:
-             type: string
+            type: array
+            items:
+              type: string
         - in: query
           name: tableLabels
           schema:
-           type: array
-           items:
-             type: string
+            type: array
+            items:
+              type: string
       responses:
         "200":
           description: "Success"
@@ -662,7 +694,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UpdateFoodPrintersRequest'
+              $ref: "#/components/schemas/UpdateFoodPrintersRequest"
       responses:
         "200":
           description: "Success"
