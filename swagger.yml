@@ -789,8 +789,6 @@ paths:
         - Order
       summary: "Delete table"
       operationId: DeleteTable
-      security:
-        - BearerAuth: []
       parameters:
         - $ref: "#/components/parameters/ID"
       responses:
@@ -816,21 +814,47 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Order"
-  /spaces/{spaceId}/order/cancel:
+  /orders/{orderId}/cancel:
     patch:
       tags:
         - Order
-      summary: "Cancel order"
+      summary: "Update order status"
       operationId: CancelOrder
-      security:
-        - BearerAuth: []
       parameters:
-        - $ref: "#/components/parameters/SpaceID"
+        - in: path
+          name: orderId
+          schema:
+            type: string
+          required: true
       requestBody:
         content:
           application/json:
             schema:
               $ref: "#/components/schemas/CancelOrderRequest"
+      responses:
+        "200":
+          description: "Success"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Order"
+  /orders/{orderId}/addition:
+    patch:
+      tags:
+        - Order
+      summary: "Update order status"
+      operationId: AddOrder
+      parameters:
+        - in: path
+          name: orderId
+          schema:
+            type: string
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AddOrderRequest"
       responses:
         "200":
           description: "Success"
@@ -1202,6 +1226,15 @@ components:
         extra:
           type: integer
           format: int64
+    AddOrderRequest:
+      type: object
+      required:
+        - foods
+      properties:
+        foods:
+          type: array
+          items:
+            $ref: "#/components/schemas/FoodSpec"
     CancelOrderRequest:
       type: object
       required:
