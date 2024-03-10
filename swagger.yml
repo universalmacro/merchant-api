@@ -885,6 +885,74 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Order"
+  /orders/bills/print:
+    post:
+      tags:
+        - Order
+      summary: "Print bill"
+      operationId: PrintBill
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateBillRequest"
+      responses:
+        "204":
+          description: "Printed"
+  /orders/bills:
+    post:
+      tags:
+        - Order
+      summary: "Create bill"
+      operationId: CreateBill
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateBillRequest"
+      responses:
+        "201":
+          description: "Created"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BIll"
+    get:
+      tags:
+        - Order
+      summary: "List bills"
+      operationId: ListBills
+      parameters:
+        - $ref: "#/components/parameters/StartAt"
+        - $ref: "#/components/parameters/EndAt"
+      responses:
+        "200":
+          description: "Success"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/BIll"
+  /orders/bills/{billId}:
+    get:
+      tags:
+        - Order
+      summary: "Get bill"
+      operationId: GetBill
+      parameters:
+        - in: path
+          name: billId
+          schema:
+            type: string
+          required: true
+      responses:
+        "200":
+          description: "Success"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BIll"
 components:
   securitySchemes:
     ApiKeyAuth:
@@ -1147,6 +1215,35 @@ components:
         pagination:
           $ref: "#/components/schemas/Pagination"
     # Order
+    BIll:
+      type: object
+      required:
+        - id
+        - orders
+        - status
+        - createdAt
+      properties:
+        id:
+          type: string
+        orders:
+          type: array
+          items:
+            $ref: "#/components/schemas/Order"
+        status:
+          $ref: "#/components/schemas/OrderStatus"
+        createdAt:
+          type: integer
+          format: int64
+    CreateBillRequest:
+      type: object
+      properties:
+        amount:
+          type: integer
+          format: int64
+        orderIds:
+          type: array
+          items:
+            type: string
     SaveFoodRequest:
       type: object
       required:
