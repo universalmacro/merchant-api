@@ -426,6 +426,25 @@ paths:
                 items:
                   $ref: "#/components/schemas/Space"
   /spaces/{spaceId}/orders:
+    post:
+      tags:
+        - Order
+      summary: "Create order"
+      operationId: CreateOrder
+      parameters:
+        - $ref: "#/components/parameters/SpaceID"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateOrderRequest"
+      responses:
+        "201":
+          description: "Created"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Order"
     get:
       tags:
         - Order
@@ -794,26 +813,6 @@ paths:
       responses:
         "204":
           description: "Success"
-  /spaces/{spaceId}/order:
-    post:
-      tags:
-        - Order
-      summary: "Create order"
-      operationId: CreateOrder
-      parameters:
-        - $ref: "#/components/parameters/SpaceID"
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/CreateOrderRequest"
-      responses:
-        "201":
-          description: "Created"
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Order"
   /orders/{orderId}/cancel:
     patch:
       tags:
