@@ -813,6 +813,30 @@ paths:
       responses:
         "204":
           description: "Success"
+  /orders/{orderId}/tableLabel:
+    put:
+      tags:
+        - Order
+      summary: "Update order table label"
+      operationId: UpdateOrderTableLabel
+      parameters:
+        - in: path
+          name: orderId
+          schema:
+            type: string
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateOrderTableLabelRequest"
+      responses:
+        "200":
+          description: "Success"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Order"
   /orders/{orderId}/cancel:
     patch:
       tags:
@@ -1243,6 +1267,13 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/FoodSpec"
+    UpdateOrderTableLabelRequest:
+      type: object
+      required:
+        - tableLabel
+      properties:
+        tableLabel:
+          type: string
     CreateOrderRequest:
       type: object
       required:
