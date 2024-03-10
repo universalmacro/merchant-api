@@ -1236,6 +1236,9 @@ components:
           format: int64
     CreateBillRequest:
       type: object
+      required:
+        - amount
+        - orderIds
       properties:
         amount:
           type: integer
