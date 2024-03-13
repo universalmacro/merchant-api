@@ -916,7 +916,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/BIll"
+                $ref: "#/components/schemas/Bill"
     get:
       tags:
         - Order
@@ -933,7 +933,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: "#/components/schemas/BIll"
+                  $ref: "#/components/schemas/Bill"
   /orders/bills/{billId}:
     get:
       tags:
@@ -952,7 +952,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/BIll"
+                $ref: "#/components/schemas/Bill"
 components:
   securitySchemes:
     ApiKeyAuth:
@@ -1215,7 +1215,7 @@ components:
         pagination:
           $ref: "#/components/schemas/Pagination"
     # Order
-    BIll:
+    Bill:
       type: object
       required:
         - id
