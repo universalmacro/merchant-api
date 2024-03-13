@@ -1073,21 +1073,6 @@ components:
           type: string
         phoneNumber:
           $ref: "#/components/schemas/PhoneNumber"
-    CreateMemberRequest:
-      type: object
-      required:
-        - merchantId
-        - name
-        - phoneNumber
-      properties:
-        merchantId:
-          type: string
-        name:
-          type: string
-        verificationCode:
-          type: string
-        phoneNumber:
-          $ref: "#/components/schemas/PhoneNumber"
     Member:
       type: object
       required:
