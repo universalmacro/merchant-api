@@ -1219,11 +1219,15 @@ components:
       type: object
       required:
         - id
+        - amount
         - orders
         - createdAt
       properties:
         id:
           type: string
+        amount:
+          type: integer
+          format: int64
         orders:
           type: array
           items:
