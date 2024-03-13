@@ -1220,7 +1220,6 @@ components:
       required:
         - id
         - orders
-        - status
         - createdAt
       properties:
         id:
@@ -1229,8 +1228,6 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/Order"
-        status:
-          $ref: "#/components/schemas/OrderStatus"
         createdAt:
           type: integer
           format: int64
