@@ -5,7 +5,7 @@ info:
     universalmacro
   contact:
     email: chenyunda218@gmail.com
-  version: 0.0.3
+  version: 0.0.4
 servers:
   - url: https://uat.uat-hongkong-1-merchant.universalmacro.com
   - url: http://localhost:8080
@@ -1070,6 +1070,21 @@ components:
       type: object
       properties:
         merchantId:
+          type: string
+        phoneNumber:
+          $ref: "#/components/schemas/PhoneNumber"
+    CreateMemberRequest:
+      type: object
+      required:
+        - merchantId
+        - name
+        - phoneNumber
+      properties:
+        merchantId:
+          type: string
+        name:
+          type: string
+        verificationCode:
           type: string
         phoneNumber:
           $ref: "#/components/schemas/PhoneNumber"
