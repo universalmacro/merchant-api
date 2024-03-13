@@ -573,6 +573,10 @@ paths:
         - $ref: "#/components/parameters/SpaceID"
         - $ref: "#/components/parameters/IndexParam"
         - $ref: "#/components/parameters/LimitParam"
+        - in: query
+          name: statuses
+          schema:
+            $ref: "#/components/schemas/FoodStatus"
       responses:
         "200":
           description: "Success"
