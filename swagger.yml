@@ -241,7 +241,7 @@ paths:
       responses:
         "204":
           description: "Success"
-  /merchants/{merchantId}/verification:
+  /merchants/{merchantId}/verification-code:
     post:
       tags:
         - Merchant
