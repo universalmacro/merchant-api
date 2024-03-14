@@ -296,6 +296,26 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Member"
+  /merchants/{merchantId}/members/signup:
+    post:
+      tags:
+        - Member
+      summary: "Create member"
+      operationId: SignupMember
+      parameters:
+        - $ref: "#/components/parameters/MerchantId"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateMemberRequest"
+      responses:
+        "201":
+          description: "Success"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Session"
   /merchants/{merchantId}/contact-form:
     post:
       tags:
