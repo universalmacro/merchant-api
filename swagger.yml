@@ -265,8 +265,6 @@ paths:
         - Member
       summary: "List members"
       operationId: ListMembers
-      security:
-        - BearerAuth: []
       parameters:
         - $ref: "#/components/parameters/MerchantId"
         - $ref: "#/components/parameters/IndexParam"
@@ -284,15 +282,13 @@ paths:
         - Member
       summary: "Create member"
       operationId: CreateMember
-      security:
-        - BearerAuth: []
       parameters:
         - $ref: "#/components/parameters/MerchantId"
       requestBody:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/Member"
+              $ref: "#/components/schemas/CreateMemberRequest"
       responses:
         "201":
           description: "Success"
@@ -1070,6 +1066,15 @@ components:
       type: object
       properties:
         merchantId:
+          type: string
+        phoneNumber:
+          $ref: "#/components/schemas/PhoneNumber"
+    CreateMemberRequest:
+      type: object
+      properties:
+        merchantId:
+          type: string
+        verificationCode:
           type: string
         phoneNumber:
           $ref: "#/components/schemas/PhoneNumber"
