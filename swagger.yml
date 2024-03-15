@@ -1467,8 +1467,6 @@ components:
             $ref: "#/components/schemas/FoodSpec"
     UpdateOrderTableLabelRequest:
       type: object
-      required:
-        - tableLabel
       properties:
         tableLabel:
           type: string
