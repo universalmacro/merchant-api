@@ -308,7 +308,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/CreateMemberRequest"
+              $ref: "#/components/schemas/SignupMemberRequest"
       responses:
         "201":
           description: "Success"
@@ -1089,6 +1089,14 @@ components:
           type: string
         phoneNumber:
           $ref: "#/components/schemas/PhoneNumber"
+    SignupMemberRequest:
+      properties:
+        merchantId:
+          type: string
+        phoneNumber:
+          $ref: "#/components/schemas/PhoneNumber"
+        verificationCode:
+          type: string
     CreateMemberRequest:
       type: object
       properties:
