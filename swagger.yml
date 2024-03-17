@@ -1090,6 +1090,7 @@ components:
         phoneNumber:
           $ref: "#/components/schemas/PhoneNumber"
     SignupMemberRequest:
+      type: object
       properties:
         merchantId:
           type: string
